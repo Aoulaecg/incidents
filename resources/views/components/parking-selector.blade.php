@@ -1,0 +1,12 @@
+@props(['parkings', 'assigned' => [], 'inactiveAssigned' => collect(), 'conditional' => false, 'visible' => true])
+@php($selected = \Illuminate\Support\Arr::wrap(old('parking_ids', $assigned)))
+<section class="parking-selector" data-parking-selector @if($conditional) data-parking-role="account_role" @endif @if(!$visible) hidden @endif aria-labelledby="parking-selection-title">
+    <div class="form-section-heading section-divider"><x-icon name="parking" /><div><h2 id="parking-selection-title">Parkings affectés <span class="count-badge" data-parking-count aria-live="polite">{{ $parkings->whereIn('id', $selected)->count() }} sélectionné(s)</span></h2><p>Sélectionnez les parkings que ce superviseur sera autorisé à gérer.</p></div></div>
+    <input type="hidden" name="parking_ids" value="" @disabled(!$visible)>
+    <div class="parking-selection-tools" data-parking-tools hidden><div class="search-filter"><label class="form-label" for="parking-search">Rechercher un parking</label><input class="form-control" id="parking-search" type="search" placeholder="Nom du parking" data-parking-search></div><div class="parking-selection-buttons"><button type="button" class="btn btn-light" data-parking-select-all>Tout sélectionner</button><button type="button" class="btn btn-light" data-parking-clear>Désélectionner tout</button></div></div>
+    <div class="parking-assignment-grid">@forelse($parkings as $parking)<label class="parking-option" data-parking-option><input class="form-check-input" type="checkbox" name="parking_ids[]" value="{{ $parking->id }}" @checked(in_array($parking->id, $selected)) @disabled(!$visible)><span><strong>{{ $parking->nom }}</strong><small>Parking actif</small></span></label>@empty<p class="form-hint">Aucun parking actif disponible. <a href="{{ route('admin.parkings.create') }}">Ajouter un parking</a>.</p>@endforelse</div>
+    <p class="form-hint" data-parking-no-match hidden>Aucun parking ne correspond à votre recherche.</p>
+    @error('parking_ids')<p class="field-error">{{ $message }}</p>@enderror
+    @foreach($errors->get('parking_ids.*') as $messages) @foreach($messages as $message)<p class="field-error">{{ $message }}</p>@endforeach @endforeach
+    @if($inactiveAssigned->isNotEmpty())<div class="inactive-assignments"><strong>Affectations inactives conservées</strong><p>{{ $inactiveAssigned->pluck('nom')->implode(', ') }}</p><small>Ces parkings restent associés pour préserver l’historique. Réactivez-les dans la gestion des parkings pour modifier leurs affectations.</small></div>@endif
+</section>

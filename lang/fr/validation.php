@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'required' => 'Le champ :attribute est obligatoire.',
+    'string' => 'Le champ :attribute doit être un texte.',
+    'email' => 'Veuillez saisir une adresse email valide.',
+    'unique' => 'Cette adresse email est déjà utilisée.',
+    'confirmed' => 'La confirmation du mot de passe ne correspond pas.',
+    'accepted' => 'Veuillez confirmer la désactivation du compte.',
+    'boolean' => 'Le statut sélectionné est invalide.',
+    'in' => 'La valeur sélectionnée pour :attribute est invalide.',
+    'integer' => 'Le champ :attribute doit être un nombre entier.',
+    'exists' => 'La valeur sélectionnée pour :attribute n’est pas disponible.',
+    'array' => 'Le champ :attribute doit contenir une liste.',
+    'distinct' => 'Une affectation a été sélectionnée plusieurs fois.',
+    'uuid' => 'Le formulaire a expiré. Rechargez la page.',
+    'date_format' => 'Le format du champ :attribute est invalide.',
+    'before_or_equal' => 'La date ne peut pas être postérieure à aujourd’hui.',
+    'current_password' => 'Le mot de passe actuel est incorrect.',
+    'different' => 'Le nouveau mot de passe doit être différent du mot de passe actuel.',
+    'max' => ['string' => 'Le champ :attribute ne doit pas dépasser :max caractères.', 'array' => 'Le champ :attribute contient trop d’éléments.'],
+    'min' => ['string' => 'Le champ :attribute doit contenir au moins :min caractères.'],
+    'password' => [
+        'letters' => 'Le mot de passe doit contenir des lettres.',
+        'mixed' => 'Le mot de passe doit contenir une majuscule et une minuscule.',
+        'numbers' => 'Le mot de passe doit contenir un chiffre.',
+        'symbols' => 'Le mot de passe doit contenir un caractère spécial.',
+    ],
+    'attributes' => [
+        'nom' => 'nom', 'prenom' => 'prénom', 'email' => 'email',
+        'password' => 'mot de passe', 'current_password' => 'mot de passe actuel',
+        'role' => 'rôle', 'active' => 'statut', 'q' => 'recherche',
+        'confirm_deactivation' => 'confirmation de désactivation',
+        'parking_id' => 'parking', 'date_incident' => 'date', 'heure_incident' => 'heure',
+        'description' => 'description', 'date' => 'date', 'parking_ids' => 'parkings', 'submission_token' => 'formulaire',
+    ],
+];
